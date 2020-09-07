@@ -31,6 +31,8 @@ class GalleryActivity : AppCompatActivity() {
     companion object {
         private const val IMAGE_PICK_CODE = 1000
         private const val PERMISSION_CODE = 1001
+        private const val BUFFER_SIZE = 8192
+        private const val RESOLVER_MODE = "r"
     }
 
     private val viewModel by viewModel<GalleryViewModel>()
@@ -49,15 +51,12 @@ class GalleryActivity : AppCompatActivity() {
                     val permissions = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE)
                     requestPermissions(permissions, PERMISSION_CODE)
                 } else {
-                    //permission already granted
                     pickImageFromGallery()
                 }
             } else {
-                //system OS is < Marshmallow
                 pickImageFromGallery()
             }
         }
-
         observeViewModel()
     }
 
@@ -121,11 +120,11 @@ class GalleryActivity : AppCompatActivity() {
         if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_CODE) {
             data?.data?.let { fileUri ->
                 val inputStream = FileInputStream(
-                    contentResolver.openFileDescriptor(fileUri, "r")?.fileDescriptor
+                    contentResolver.openFileDescriptor(fileUri, RESOLVER_MODE)?.fileDescriptor
                 )
 
                 val bytes: ByteArray
-                val buffer = ByteArray(8192)
+                val buffer = ByteArray(BUFFER_SIZE)
                 var bytesRead: Int
                 val output = ByteArrayOutputStream()
 
