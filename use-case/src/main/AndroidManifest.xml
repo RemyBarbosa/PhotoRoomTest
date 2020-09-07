@@ -1,2 +1,1 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.tryandlearn.use_case" />
+<manifest package="com.photoroomtest.use_case" />

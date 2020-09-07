@@ -1,28 +1,18 @@
 package com.photoroomtest.gallery.data.remote
 
-import com.photoroomtest.interface_adapter.weather.model.WeatherRemoteList
+import com.photoroomtest.interface_adapter.weather.model.GalleryRemote
 import io.reactivex.Flowable
-import retrofit2.http.GET
-import retrofit2.http.Query
+import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
+import retrofit2.http.POST
 
 
 interface WeatherRetrofitDataSource {
 
-    @GET("forecast/daily")
-    fun getDailyWeatherList(
-        @Query("lat") latitude: Float,
-        @Query("lon") longitude: Float,
-        @Query("cnt") count: Int,
-        @Query("units") units: String,
-        @Query("appid") appId: String
-    ): Flowable<WeatherRemoteList>
+    @POST("/upload")
+    @FormUrlEncoded
+    fun upload(
+        @Field("b64_img") base64: String?
+    ): Flowable<GalleryRemote>
 
-    @GET("forecast/hourly")
-    fun getHourlyWeatherList(
-        @Query("lat") latitude: Float,
-        @Query("lon") longitude: Float,
-        @Query("cnt") count: Int,
-        @Query("units") units: String,
-        @Query("appid") appId: String
-    ): Flowable<WeatherRemoteList>
 }

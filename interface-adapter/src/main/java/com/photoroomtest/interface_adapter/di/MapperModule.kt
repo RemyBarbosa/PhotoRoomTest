@@ -1,12 +1,12 @@
 package com.photoroomtest.interface_adapter.di
 
-import com.photoroomtest.interface_adapter.weather.model.WeatherRemote
-import com.photoroomtest.interface_adapter.weather.model.WeatherUIModel
+import com.photoroomtest.interface_adapter.weather.model.GalleryImageUiModel
+import com.photoroomtest.interface_adapter.weather.model.GalleryRemote
 import org.koin.dsl.module.module
 
 val mapperModule = module {
-    single { WeatherUIModel.Mapper() }
-    single { WeatherRemote.Mapper() }
+    single { GalleryImageUiModel.Mapper() }
+    single { GalleryRemote.Mapper() }
 
 
 }

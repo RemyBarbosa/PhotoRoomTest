@@ -9,7 +9,7 @@ val retrofitModule = module {
 
     single {
         Retrofit.Builder()
-                .baseUrl("https://api.openweathermap.org/data/2.5/")
+                .baseUrl("https://interview.photoroom.com/")
                 .addConverterFactory(GsonConverterFactory.create(get()))
                 .addCallAdapterFactory(get())
                 .client(get())

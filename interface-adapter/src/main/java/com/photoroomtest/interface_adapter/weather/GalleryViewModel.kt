@@ -6,39 +6,32 @@ import com.photoroomtest.interface_adapter.base.ErrorState
 import com.photoroomtest.interface_adapter.base.LoadingState
 import com.photoroomtest.interface_adapter.base.RxViewModel
 import com.photoroomtest.interface_adapter.base.State
-import com.photoroomtest.interface_adapter.weather.model.WeatherUIModel
+import com.photoroomtest.interface_adapter.weather.model.GalleryImageUiModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 class GalleryViewModel(
-    private val weatherManager: WeatherManager
+    private val galleryManager: GalleryManager
 ) : RxViewModel() {
 
     private val mStates = MutableLiveData<State>()
     val states: LiveData<State>
         get() = mStates
 
-    fun observeDailyWeatherList(
-        latitude: Float,
-        longitude: Float,
-        count: Int,
-        units: String,
-        appId: String
+    fun upload(
+        b64Image: String
     ) {
         mStates.value = LoadingState
         launch {
-            weatherManager.getDailyWeatherList(latitude, longitude, count, units, appId)
+            galleryManager.upload(b64Image)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.computation())
-                .subscribe(this::onDailyWeatherListReceive, this::onError)
+                .subscribe(this::onGalleryImageReceive, this::onError)
         }
     }
 
-    private fun onDailyWeatherListReceive(weatherUiModelList: List<WeatherUIModel>) {
-        mStates.value =
-            DailyWeatherListState(
-                weatherUiModelList
-            )
+    private fun onGalleryImageReceive(galleryImageUiModel: GalleryImageUiModel) {
+        mStates.value = GalleryImageState(galleryImageUiModel)
     }
 
     private fun onError(error: Throwable) {
@@ -46,5 +39,5 @@ class GalleryViewModel(
             ErrorState(error)
     }
 
-    data class DailyWeatherListState(val weatherUIModelList: List<WeatherUIModel>) : State()
+    data class GalleryImageState(val galleryImageUiModel: GalleryImageUiModel) : State()
 }

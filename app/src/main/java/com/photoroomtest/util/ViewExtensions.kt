@@ -1,6 +1,8 @@
 package com.photoroomtest.util
 
 import android.graphics.drawable.ColorDrawable
+import android.util.Base64
+import android.util.Base64.decode
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,9 +12,10 @@ import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.photoroomtest.R
 
-fun ImageView.loadImage(url: String) {
+fun ImageView.loadImageB64(b64Image: String) {
+    val imageByteArray: ByteArray = decode(b64Image, Base64.DEFAULT)
     Glide.with(this)
-        .load(url)
+        .load(imageByteArray)
         .placeholder(ColorDrawable(ContextCompat.getColor(context, R.color.colorAccent)))
         .into(this)
 }

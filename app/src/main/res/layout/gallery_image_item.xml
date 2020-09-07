@@ -15,10 +15,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/transformed_picture"/>
+        app:layout_constraintEnd_toStartOf="@id/transformed_image"/>
 
     <ImageView
-        android:id="@+id/transformed_picture"
+        android:id="@+id/transformed_image"
         android:layout_width="150dp"
         android:layout_height="150dp"
         tools:src="@drawable/ic_wb_sunny"

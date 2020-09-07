@@ -1,20 +1,16 @@
 package com.photoroomtest.use_case.weather
 
 
-import com.photoroomtest.entity.weather.Weather
-import com.photoroomtest.use_case.weather.data.WeatherRepository
+import com.photoroomtest.entity.weather.GalleryImage
+import com.photoroomtest.use_case.weather.data.GalleryRepository
 import io.reactivex.Flowable
 
-class GetHourlyWeatherUseCase(
-    private val weatherRepository: WeatherRepository
+class UploadGalleryImageUseCase(
+    private val galleryRepository: GalleryRepository
 ) {
     fun execute(
-        latitude: Float,
-        longitude: Float,
-        count: Int,
-        units: String,
-        appId: String
-    ): Flowable<List<Weather>> {
-        return weatherRepository.getHourlyWeatherList(latitude, longitude, count, units, appId)
+        b64Image: String
+    ): Flowable<GalleryImage> {
+        return galleryRepository.upload(b64Image)
     }
 }
