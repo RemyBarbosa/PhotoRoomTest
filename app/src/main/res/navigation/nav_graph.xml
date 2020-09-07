@@ -6,7 +6,7 @@
     app:startDestination="@id/weatherListFragment">
     <fragment
         android:id="@+id/weatherListFragment"
-        android:name="com.tryandlearn.weather.ui.list.WeatherListFragment"
+        android:name="com.photoroomtest.gallery.ui.list.WeatherListFragment"
         android:label="fragment_weather_list"
         tools:layout="@layout/fragment_weather_list" >
         <action
@@ -28,7 +28,7 @@
     </fragment>
     <fragment
         android:id="@+id/weatherDetailFragment"
-        android:name="com.tryandlearn.weather.ui.detail.WeatherDetailFragment"
+        android:name="com.photoroomtest.gallery.ui.detail.WeatherDetailFragment"
         android:label="fragment_weather_detail"
         tools:layout="@layout/fragment_weather_detail" >
         <argument
@@ -43,5 +43,23 @@
         <argument
             android:name="appId"
             app:argType="string" />
+    </fragment><fragment
+        android:id="@+id/FirstFragment"
+        android:name="com.photoroomtest.gallery.ui.FirstFragment"
+        android:label="@string/first_fragment_label"
+        tools:layout="@layout/fragment_first" >
+
+        <action
+            android:id="@+id/action_FirstFragment_to_SecondFragment"
+            app:destination="@id/SecondFragment" />
+    </fragment><fragment
+        android:id="@+id/SecondFragment"
+        android:name="com.photoroomtest.gallery.ui.SecondFragment"
+        android:label="@string/second_fragment_label"
+        tools:layout="@layout/fragment_second" >
+
+        <action
+            android:id="@+id/action_SecondFragment_to_FirstFragment"
+            app:destination="@id/FirstFragment" />
     </fragment>
 </navigation>
