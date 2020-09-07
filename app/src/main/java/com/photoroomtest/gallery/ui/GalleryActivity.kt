@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.photoroomtest.R
-import com.photoroomtest.gallery.ui.adapter.WeatherListAdapter
+import com.photoroomtest.gallery.ui.adapter.GalleryListAdapter
 import com.photoroomtest.interface_adapter.base.ErrorState
 import com.photoroomtest.interface_adapter.base.LoadingState
 import com.photoroomtest.interface_adapter.weather.GalleryViewModel
@@ -46,11 +46,9 @@ class GalleryActivity : AppCompatActivity() {
 
     private fun showDailyWeatherList(weatherUIModelList: List<WeatherUIModel>) {
         if (gallery_image_list.adapter == null) {
-            gallery_image_list.adapter =
-                WeatherListAdapter()
-
+            gallery_image_list.adapter = GalleryListAdapter()
         }
-        (gallery_image_list.adapter as WeatherListAdapter).weatherList = weatherUIModelList.toMutableList()
+        (gallery_image_list.adapter as GalleryListAdapter).weatherList = weatherUIModelList.toMutableList()
         progress_bar.hide()
 
     }

@@ -5,9 +5,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.photoroomtest.R
 import com.photoroomtest.interface_adapter.weather.model.WeatherUIModel
 import com.photoroomtest.util.inflateFromParent
-import kotlinx.android.synthetic.main.daily_weather_item.view.*
 
-class WeatherListAdapter : RecyclerView.Adapter<WeatherListAdapter.DailyWeatherListViewHolder>() {
+class GalleryListAdapter : RecyclerView.Adapter<GalleryListAdapter.DailyWeatherListViewHolder>() {
 
     var weatherList: MutableList<WeatherUIModel> = mutableListOf()
         set(value) {
@@ -32,9 +31,6 @@ class WeatherListAdapter : RecyclerView.Adapter<WeatherListAdapter.DailyWeatherL
         itemView: ViewGroup
     ) : RecyclerView.ViewHolder(itemView.inflateFromParent(R.layout.gallery_image_item)) {
         fun bind(weatherUIModel: WeatherUIModel) = with(itemView) {
-            daily_icon.setImageResource(weatherUIModel.imageRes)
-            daily_date.text = weatherUIModel.date
-            daily_description.setTextOrInvisible(weatherUIModel.description)
         }
     }
 }
